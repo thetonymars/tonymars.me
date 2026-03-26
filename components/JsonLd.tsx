@@ -1,3 +1,3 @@
-export function JsonLd({ type }: { type: string }) {
+export function JsonLd({ type, data }: { type: string; data?: any }) {
   return null
 }
