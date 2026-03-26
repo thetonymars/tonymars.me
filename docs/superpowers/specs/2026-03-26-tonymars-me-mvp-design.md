@@ -408,45 +408,84 @@ Baseline requirements — not optional, not a future enhancement.
 
 ## Tracking & Script Management
 
-Third-party scripts (analytics, pixels, chat widgets) all need to live somewhere in the HTML. Different scripts require different placement. Instead of scattering `<script>` tags across the codebase, all external scripts go through **one organized system**.
+Third-party scripts (analytics, pixels, chat widgets) all need to live somewhere in the HTML. Different scripts require different placement. Instead of scattering `<script>` tags across the codebase, all external scripts go through **one organized system built into Next.js** — no external tag manager (GTM is blocked in Russia, and external dependencies add fragility).
 
-**Google Tag Manager (GTM) as the single entry point:**
+**Config-driven script loader:**
 
-GTM is the only third-party script hardcoded into the site. Everything else (GA4, Meta Pixel, Google Ads, Hotjar, etc.) is loaded through GTM — no code changes needed to add or remove tracking tools.
+All third-party scripts are defined in a single config file (`scripts.config.ts`). Each entry specifies what to load, where to place it, and which pages it applies to.
 
-**Script placement slots in the layout:**
+```ts
+interface TrackingScript {
+  id: string                  // Unique identifier, e.g. "yandex-metrica"
+  name: string                // Human-readable name
+  placement: "head" | "body-start" | "body-end"  // Where in the HTML
+  strategy: "beforeInteractive" | "afterInteractive" | "lazyOnload"  // When to load
+  pages: "all" | "site" | "funnel" | "blog"  // Which pages get this script
+  src?: string                // External script URL (if applicable)
+  inline?: string             // Inline script content (if applicable)
+  enabled: boolean            // On/off toggle — disabled scripts don't render
+  env?: string                // Environment variable key for the tracking ID
+}
+```
 
-| Slot | Location | What goes here |
-|---|---|---|
-| `head-top` | Top of `<head>` | GTM container snippet (must be first), preconnect hints |
-| `head-bottom` | Bottom of `<head>` | Meta tags, structured data (JSON-LD) |
-| `body-top` | Right after `<body>` | GTM noscript fallback |
-| `body-bottom` | Before `</body>` | Deferred scripts (chat widgets, non-critical JS) |
+**Example config:**
+
+```ts
+export const trackingScripts: TrackingScript[] = [
+  {
+    id: "yandex-metrica",
+    name: "Yandex.Metrica",
+    placement: "head",
+    strategy: "afterInteractive",
+    pages: "all",
+    enabled: true,
+    env: "NEXT_PUBLIC_YM_ID",
+  },
+  {
+    id: "meta-pixel",
+    name: "Meta Pixel",
+    placement: "head",
+    strategy: "afterInteractive",
+    pages: "all",
+    enabled: true,
+    env: "NEXT_PUBLIC_META_PIXEL_ID",
+  },
+  {
+    id: "vk-pixel",
+    name: "VK Pixel",
+    placement: "body-end",
+    strategy: "lazyOnload",
+    pages: "funnel",
+    enabled: false,  // Disabled until needed
+    env: "NEXT_PUBLIC_VK_PIXEL_ID",
+  },
+]
+```
 
 **How it works in Next.js:**
-- `app/layout.tsx` defines all four slots
-- GTM container ID is an environment variable (`NEXT_PUBLIC_GTM_ID`)
-- When GTM ID is empty/missing, no tracking scripts load at all (clean dev/preview)
-- All other tracking (GA4, Meta Pixel, Google Ads conversion) is configured inside GTM dashboard — zero code deploys to add or change tracking
+- `app/layout.tsx` reads the config and renders enabled scripts using Next.js `<Script>` component
+- `<Script>` component handles placement and loading strategy natively — `beforeInteractive` goes in `<head>`, `afterInteractive` loads after page hydration, `lazyOnload` loads during idle time
+- When an env variable is missing, that script silently skips (clean dev/preview environments)
+- Adding a new tracking script = add an entry to the config + set the env variable on Vercel. No layout code changes.
 
 **Per-page data layer:**
 
-Every page pushes structured data to GTM's `dataLayer` for event targeting:
+Every page pushes structured context to a `window.pageData` object that any analytics script can read:
 
 ```ts
 // Site page
-window.dataLayer.push({ pageType: "site", pageName: "about" })
+window.pageData = { pageType: "site", pageName: "about" }
 
 // Blog post
-window.dataLayer.push({ pageType: "blog", postSlug: "my-post", postTags: ["ai", "marketing"] })
+window.pageData = { pageType: "blog", postSlug: "my-post", postTags: ["ai", "marketing"] }
 
 // Funnel page
-window.dataLayer.push({ pageType: "funnel", funnelName: "avatar-passport", funnelPage: "reg-a" })
+window.pageData = { pageType: "funnel", funnelName: "avatar-passport", funnelPage: "reg-a" }
 ```
 
-This lets GTM fire specific tags based on page type without hardcoding URL patterns — e.g., "fire Meta Purchase event when `pageType=funnel AND funnelPage=thank-you`".
+Individual analytics scripts (Yandex.Metrica, Meta Pixel, etc.) have their own small adapter modules that read `pageData` and fire the appropriate events in that platform's format. One adapter per service, clean separation.
 
-**At MVP launch:** GTM container tag is in place but empty (or with just GA4). No tracking fires until configured. The architecture is ready for any tracking tool without code changes.
+**At MVP launch:** Script loader is in place. Enable scripts as needed by adding env variables on Vercel and toggling `enabled: true` in config.
 
 ---
 
@@ -535,7 +574,7 @@ Specific font pairing, color palette, and spacing values will be decided during 
 - Email opt-in / newsletter — not at launch
 - Payment processing / checkout — handled by external platform (AXL)
 - English content — architecture ready, content not at launch
-- Full analytics setup (GA4, Meta Pixel, GTM configuration) — container ready, setup separate
+- Full analytics setup (Yandex.Metrica, Meta Pixel, etc.) — script loader ready, configuration separate
 - Search functionality
 - Dark mode
 - Cookie consent banner — add when analytics scripts are activated
