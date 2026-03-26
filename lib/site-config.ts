@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Tony Mars",
+  name: "Тони Марс",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://tonymars.me",
   locale: "ru",
 
