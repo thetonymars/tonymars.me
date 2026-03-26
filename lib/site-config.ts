@@ -4,7 +4,7 @@ export const siteConfig = {
   locale: "ru",
 
   social: {
-    youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://youtube.com/@tonymars",
+    youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://www.youtube.com/@the-tony-mars",
     telegram: "https://t.me/thetonymars",
   },
 
