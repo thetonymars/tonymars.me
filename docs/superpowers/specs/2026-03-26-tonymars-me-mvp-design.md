@@ -205,24 +205,17 @@ Any page can override the preset — e.g., a funnel page that needs a specific b
 - Claude Code creates and edits funnel pages directly in the codebase
 - New funnel = new folder + page components
 
-**Reusable building blocks** (component library, available to all funnel pages):
+**MVP building blocks** (build more when funnels need them):
 
 | Component | Purpose |
 |---|---|
 | `FunnelHeadline` | Main headline with optional subheadline |
-| `FunnelCTA` | Call-to-action button with optional urgency text |
-| `FunnelForm` | Opt-in form (name, email, phone — configurable fields) |
-| `TestimonialCard` | Single testimonial with name, photo, quote |
-| `TestimonialGrid` | Grid/carousel of testimonials |
-| `PricingCard` | Product pricing with features list |
-| `PricingStack` | Multiple pricing options side by side |
-| `BenefitsList` | Bulleted benefits with icons |
-| `GuaranteeBlock` | Money-back guarantee or risk reversal |
-| `CountdownTimer` | Deadline urgency (real deadlines only) |
+| `FunnelCTA` | Call-to-action button (link or form submit) |
+| `FunnelForm` | Opt-in form — submits to AXL via API (see AXL Integration) |
 | `VideoEmbed` | Responsive video player (YouTube/Vimeo) |
 | `FunnelFooter` | Minimal footer with legal links only |
 
-Components are available but never forced. Each funnel page decides what to use.
+Additional components (testimonials, pricing cards, guarantee blocks, countdown timers, etc.) are built when the first funnel that needs them is created. No premature component library.
 
 ---
 
@@ -240,16 +233,13 @@ Components are available but never forced. Each funnel page decides what to use.
 
 | Field | Type | Required | Notes |
 |---|---|---|---|
-| `title` | string | Yes | Post title |
+| `title` | string | Yes | Post title (also used as meta title and OG title) |
 | `slug` | slug | Yes | URL slug, auto-generated from title |
 | `body` | Portable Text | Yes | Rich text with embedded images, code blocks |
-| `excerpt` | text | Yes | Short summary for cards and meta description |
-| `metaTitle` | string | No | Custom SEO title (falls back to `title`) |
-| `metaDescription` | string | No | Custom SEO description (falls back to `excerpt`) |
+| `excerpt` | text | Yes | Short summary for cards, meta description, and OG description |
 | `coverImage` | image | Yes | Cover image for cards and OG sharing |
 | `publishedAt` | datetime | Yes | Publication date |
 | `tags` | array of strings | No | Filterable tags |
-| `readingTime` | number | Auto | Calculated from body word count (~200 wpm) |
 
 **Blog listing pagination:** "Load more" button, 9 posts per page. No infinite scroll (respects user control).
 
@@ -283,9 +273,7 @@ Every page needs proper sharing metadata. When someone shares a link on Telegram
 Embedded on relevant pages for search engine rich results.
 
 - **Homepage:** `Person` schema (name, url, jobTitle, sameAs → YouTube, Telegram)
-- **Blog listing:** `WebSite` schema with search potential
 - **Blog post:** `BlogPosting` schema (headline, datePublished, author, image)
-- **About page:** Extended `Person` schema (bio, credentials)
 
 ---
 
@@ -298,18 +286,6 @@ Embedded on relevant pages for search engine rich results.
 - Auto-detect browser language, language switcher in header (appears when multiple locales exist)
 - Section content comes from locale files, so translating = adding keys
 - Funnel pages: i18n-ready but each funnel decides whether to support multiple languages (most won't)
-
----
-
-## Section Modularity
-
-- Homepage sections are independent React components
-- Section order defined in config array — reorder by changing array position
-- Remove section = remove from array
-- Add new section = create component + add to array
-- Each section receives its content from locale files
-- New section types can be created anytime without affecting existing ones
-- Each section component accepts a standard props interface (id, className) for consistent spacing and scroll targeting
 
 ---
 
@@ -370,7 +346,7 @@ Speed is part of the premium experience. A site that loads in 3+ seconds feels c
 - Minimal JavaScript — no heavy animation libraries, no jQuery
 - Static generation for all site pages and blog posts (no server-side rendering at request time)
 - Sanity images via their CDN with automatic transforms
-- No third-party scripts on initial load (analytics via GTM, loaded async after page interactive)
+- Third-party scripts loaded async via `afterInteractive` strategy (never block initial render)
 
 ---
 
@@ -403,6 +379,28 @@ Baseline requirements — not optional, not a future enhancement.
 - Message: "This offer is no longer available"
 - CTA: route to homepage or a current offer
 - Funnel pages can redirect here when a campaign ends
+
+---
+
+## AXL Integration
+
+AXL is Tony's CRM and product delivery platform. Funnel pages need to connect to AXL for two things:
+
+**1. Opt-in form submissions (lead capture):**
+- `FunnelForm` component submits to AXL's API endpoint
+- Each funnel has its own AXL list/tag configured in its page data
+- On success: redirect to `/go/[funnel]/confirmation` (or `/go/[funnel]/registered` if no double opt-in)
+- On error: show inline error message, don't lose form data
+
+**2. Purchase / checkout:**
+- Funnel sales pages link to AXL-hosted checkout (external redirect)
+- AXL handles payment processing, order fulfillment, and product delivery
+- After purchase, AXL redirects back to `/go/[funnel]/thank-you` on tonymars.me
+- No payment processing on tonymars.me itself — AXL owns the transaction
+
+**Configuration:** Each funnel page defines its AXL connection in its page data (API endpoint, list ID, redirect URL). No global AXL config — each funnel can connect to different AXL campaigns.
+
+**MVP scope:** Get one funnel's opt-in form working with AXL. The pattern then repeats for all future funnels.
 
 ---
 
@@ -468,22 +466,7 @@ export const trackingScripts: TrackingScript[] = [
 - When an env variable is missing, that script silently skips (clean dev/preview environments)
 - Adding a new tracking script = add an entry to the config + set the env variable on Vercel. No layout code changes.
 
-**Per-page data layer:**
-
-Every page pushes structured context to a `window.pageData` object that any analytics script can read:
-
-```ts
-// Site page
-window.pageData = { pageType: "site", pageName: "about" }
-
-// Blog post
-window.pageData = { pageType: "blog", postSlug: "my-post", postTags: ["ai", "marketing"] }
-
-// Funnel page
-window.pageData = { pageType: "funnel", funnelName: "avatar-passport", funnelPage: "reg-a" }
-```
-
-Individual analytics scripts (Yandex.Metrica, Meta Pixel, etc.) have their own small adapter modules that read `pageData` and fire the appropriate events in that platform's format. One adapter per service, clean separation.
+**Event tracking:** The clean URL structure (`/go/funnel-name/page-type`) is the primary mechanism for analytics filtering and conversion tracking. No custom data layer needed — analytics tools filter on URL patterns directly (see Analytics Filtering table above).
 
 **At MVP launch:** Script loader is in place. Enable scripts as needed by adding env variables on Vercel and toggling `enabled: true` in config.
 
@@ -570,12 +553,12 @@ Specific font pairing, color palette, and spacing values will be decided during 
 
 ## Out of Scope (MVP)
 
-- Members area (`members.tonymars.me`) — later
-- Email opt-in / newsletter — not at launch
-- Payment processing / checkout — handled by external platform (AXL)
-- English content — architecture ready, content not at launch
-- Full analytics setup (Yandex.Metrica, Meta Pixel, etc.) — script loader ready, configuration separate
+- Members area (`members.tonymars.me`)
+- Email opt-in / newsletter
+- Payment processing — handled by AXL (external redirect)
+- English content — architecture ready, content later
+- Full analytics configuration — script loader ready, setup separate
 - Search functionality
 - Dark mode
 - Cookie consent banner — add when analytics scripts are activated
-- Redirects from yellows.one — handled on yellows.one side, not tonymars.me
+- Redirects from yellows.one — handled on yellows.one side
