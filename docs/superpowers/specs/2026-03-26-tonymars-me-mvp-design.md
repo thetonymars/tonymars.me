@@ -210,8 +210,7 @@ Any page can override the preset — e.g., a funnel page that needs a specific b
 | Component | Purpose |
 |---|---|
 | `FunnelHeadline` | Main headline with optional subheadline |
-| `FunnelCTA` | Call-to-action button (link or form submit) |
-| `FunnelForm` | Opt-in form — submits to AXL via API (see AXL Integration) |
+| `FunnelCTA` | Call-to-action button (triggers AXL popup or links to page) |
 | `VideoEmbed` | Responsive video player (YouTube/Vimeo) |
 | `FunnelFooter` | Minimal footer with legal links only |
 
@@ -384,23 +383,12 @@ Baseline requirements — not optional, not a future enhancement.
 
 ## AXL Integration
 
-AXL is Tony's CRM and product delivery platform. Funnel pages need to connect to AXL for two things:
+AXL is Tony's CRM and product delivery platform. Integration is script-based — AXL provides a script that handles forms via popup.
 
-**1. Opt-in form submissions (lead capture):**
-- `FunnelForm` component submits to AXL's API endpoint
-- Each funnel has its own AXL list/tag configured in its page data
-- On success: redirect to `/go/[funnel]/confirmation` (or `/go/[funnel]/registered` if no double opt-in)
-- On error: show inline error message, don't lose form data
-
-**2. Purchase / checkout:**
-- Funnel sales pages link to AXL-hosted checkout (external redirect)
-- AXL handles payment processing, order fulfillment, and product delivery
-- After purchase, AXL redirects back to `/go/[funnel]/thank-you` on tonymars.me
-- No payment processing on tonymars.me itself — AXL owns the transaction
-
-**Configuration:** Each funnel page defines its AXL connection in its page data (API endpoint, list ID, redirect URL). No global AXL config — each funnel can connect to different AXL campaigns.
-
-**MVP scope:** Get one funnel's opt-in form working with AXL. The pattern then repeats for all future funnels.
+- AXL embed script is added to funnel pages that need it (via the tracking script loader or directly in the page)
+- Button click triggers AXL popup form — AXL handles the form, submission, and delivery
+- No API, no custom form component on our side — AXL owns the entire form experience
+- Tony provides the specific AXL script per funnel at integration time
 
 ---
 
