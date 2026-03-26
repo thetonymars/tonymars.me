@@ -162,27 +162,37 @@ Examples (copy TBD during design phase):
 
 ---
 
-## Site Footer (persistent, all pages)
+## Page Shell (Layout System)
 
-Separate from the CTA section. Appears on every page (homepage, blog, legal pages). Not on funnel pages (funnels have their own minimal footer with legal links only).
+Every page assembles its shell from three modular pieces: header, content, footer. Each piece can be toggled on/off or swapped per page.
 
-**Contents:**
+**Three layout presets:**
+
+| Preset | Header | Footer | Used by |
+|---|---|---|---|
+| `site` | Site header (full nav) | Site footer (social + legal + copyright) | Homepage, /about, /blog, legal pages |
+| `funnel` | None | Funnel footer (legal links only, minimal) | All `/go/` funnel pages |
+| `minimal` | None | None | Special pages (expired, custom landing) |
+
+Any page can override the preset — e.g., a funnel page that needs a specific branded header for a webinar. The layout is a choice, not a constraint.
+
+**Site header:**
+- Logo/name left, nav links right
+- Nav links: site pages + blog (exact items TBD during design)
+- Language switcher appears when English is added
+- Mobile: hamburger menu with slide-out panel
+- Header behavior: appears on scroll-up, hides on scroll-down (auto-hide pattern)
+- No heavy sticky header taking permanent screen space
+
+**Site footer:**
 - Social links: YouTube, Telegram (icon buttons)
 - Legal links: Privacy Policy, Terms, Oferta
 - Copyright: "© 2026 Tony Mars"
 - Minimal design — one line or two, not a mega-footer
 
----
-
-## Navigation
-
-- Clean minimal header: logo/name left, nav links right
-- Nav links: site pages + blog (exact items TBD during design)
-- Language switcher appears when English is added
-- Mobile: hamburger menu with slide-out or dropdown panel
-- Header behavior: appears on scroll-up, hides on scroll-down (auto-hide pattern)
-- No heavy sticky header taking permanent screen space
-- Funnel pages: no site navigation (funnels are standalone, distraction-free)
+**Funnel footer:**
+- Legal links only (Privacy Policy, Terms, Oferta) — small text, minimal visual weight
+- No social links, no copyright block, no navigation — nothing that distracts from conversion
 
 ---
 
@@ -396,14 +406,47 @@ Baseline requirements — not optional, not a future enhancement.
 
 ---
 
-## Analytics Readiness
+## Tracking & Script Management
 
-Full GA4/Meta Pixel/GTM setup is out of scope for MVP, but the architecture must be ready:
+Third-party scripts (analytics, pixels, chat widgets) all need to live somewhere in the HTML. Different scripts require different placement. Instead of scattering `<script>` tags across the codebase, all external scripts go through **one organized system**.
 
-- Empty GTM container tag in `<head>` — placeholder for future analytics scripts
-- All pages expose consistent `data-page-type` attributes (site, blog, funnel) for future event triggers
-- Funnel pages expose `data-funnel` and `data-page` attributes for conversion tracking setup
-- No analytics code fires at launch — just the container ready to receive it
+**Google Tag Manager (GTM) as the single entry point:**
+
+GTM is the only third-party script hardcoded into the site. Everything else (GA4, Meta Pixel, Google Ads, Hotjar, etc.) is loaded through GTM — no code changes needed to add or remove tracking tools.
+
+**Script placement slots in the layout:**
+
+| Slot | Location | What goes here |
+|---|---|---|
+| `head-top` | Top of `<head>` | GTM container snippet (must be first), preconnect hints |
+| `head-bottom` | Bottom of `<head>` | Meta tags, structured data (JSON-LD) |
+| `body-top` | Right after `<body>` | GTM noscript fallback |
+| `body-bottom` | Before `</body>` | Deferred scripts (chat widgets, non-critical JS) |
+
+**How it works in Next.js:**
+- `app/layout.tsx` defines all four slots
+- GTM container ID is an environment variable (`NEXT_PUBLIC_GTM_ID`)
+- When GTM ID is empty/missing, no tracking scripts load at all (clean dev/preview)
+- All other tracking (GA4, Meta Pixel, Google Ads conversion) is configured inside GTM dashboard — zero code deploys to add or change tracking
+
+**Per-page data layer:**
+
+Every page pushes structured data to GTM's `dataLayer` for event targeting:
+
+```ts
+// Site page
+window.dataLayer.push({ pageType: "site", pageName: "about" })
+
+// Blog post
+window.dataLayer.push({ pageType: "blog", postSlug: "my-post", postTags: ["ai", "marketing"] })
+
+// Funnel page
+window.dataLayer.push({ pageType: "funnel", funnelName: "avatar-passport", funnelPage: "reg-a" })
+```
+
+This lets GTM fire specific tags based on page type without hardcoding URL patterns — e.g., "fire Meta Purchase event when `pageType=funnel AND funnelPage=thank-you`".
+
+**At MVP launch:** GTM container tag is in place but empty (or with just GA4). No tracking fires until configured. The architecture is ready for any tracking tool without code changes.
 
 ---
 
