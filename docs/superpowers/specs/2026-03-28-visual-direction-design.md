@@ -18,8 +18,8 @@ Visual direction for the tonymars.me homepage redesign. Builds on the approved w
 | Yellow | `#fcd214` | Badge labels, highlight moments (sparingly) |
 | Headline Text | `#1f2426` | H1–H3 headings |
 | Body Text | `#495257` | Paragraphs, descriptions |
-| White Background | `#ffffff` | Hero, proof, blog, footer sections |
-| Light Background | `#f5f7f8` | Router, about, CTA sections (alternating) |
+| White Background | `#ffffff` | Hero, proof, blog, CTA sections |
+| Light Background | `#f5f7f8` | Router, about, footer sections |
 | Border | `#e8ecee` | Card borders, dividers, section separators |
 
 ### Color Rules
@@ -51,7 +51,7 @@ Visual direction for the tonymars.me homepage redesign. Builds on the approved w
 
 ### Font Loading
 
-- Load Inter from Google Fonts: weights 400, 500, 700, 800, 900
+- Load Inter from Google Fonts: weights 400, 500, 600, 700, 800, 900
 - `display: swap` to prevent FOIT
 - Preload the 900 weight (used in hero, first visible element)
 
@@ -97,6 +97,22 @@ Padding: 14px 28px. Font: 14px / weight 700.
 - Font: 13px / weight 600
 - Color: `#495257`
 
+### Inline Links
+
+- Color: `#0073b9`
+- Hover: underline
+- No other decoration by default
+
+### Blog Cards
+
+- White background, border 2px solid `#e8ecee`, radius 12px
+- Cover image area at top (16:9 ratio placeholder)
+- Body padding: 24px
+- Date: 12px / weight 500 / color `#888`
+- Title: 17px / weight 800 / color `#1f2426`
+- Excerpt: 14px / weight 400 / color `#495257`
+- Hover: same as router cards (lift + shadow)
+
 ### Proof Strip
 
 - Numbers: 48px / weight 900 / color `#003561`
@@ -141,6 +157,7 @@ Unchanged from MVP spec:
 - **Proof numbers:** count-up animation on viewport entry, once
 - **Header:** smooth show/hide on scroll, 200ms
 - **No parallax, no floating elements, no continuous animations**
+- **Focus states:** visible blue outline (`#0073b9`, 2px offset) on all interactive elements. Follows MVP spec accessibility requirements.
 
 ---
 
