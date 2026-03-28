@@ -9,7 +9,7 @@ export function About() {
     <section className="py-16 sm:py-24 bg-[#f5f7f8]">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative aspect-square max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden bg-gray-100">
+          <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 rounded-2xl overflow-hidden bg-gray-100">
             <Image
               src="/tony-portrait.png"
               alt="Tony Mars"

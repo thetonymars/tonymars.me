@@ -70,7 +70,7 @@ export function SiteHeader() {
             <Link
               key={item.key}
               href={item.href}
-              className="block py-3 text-[#495257] no-underline"
+              className="block py-3 text-[13px] font-medium text-[#495257] hover:text-[#0073b9] no-underline transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               {t(item.key)}

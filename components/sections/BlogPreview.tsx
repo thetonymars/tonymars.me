@@ -23,7 +23,7 @@ export async function BlogPreview() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Link key={post._id} href={`/blog/${post.slug}`} className="bg-white border-2 border-[#e8ecee] rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] no-underline">
+            <Link key={post._id} href={`/blog/${post.slug}`} className="bg-white border-2 border-[#e8ecee] rounded-xl overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:border-[#0073b9] no-underline">
               <article>
                 {post.coverImage && (
                   <div className="relative aspect-[16/9] bg-gray-100">

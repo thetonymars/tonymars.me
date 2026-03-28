@@ -7,7 +7,7 @@ export function Hero() {
     <section className="py-24 sm:py-32 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="max-w-2xl">
-          <span className="inline-block bg-[#fcd214] text-[#003561] px-3.5 py-1 rounded text-[11px] font-bold tracking-[1.5px] mb-5">{t("badge")}</span>
+          <span className="inline-block bg-[#fcd214] text-[#003561] px-3.5 py-[5px] rounded text-[11px] font-bold tracking-[1.5px] mb-5">{t("badge")}</span>
           <h1 className="text-4xl sm:text-5xl lg:text-[72px] font-black leading-[1.04] tracking-tight lg:tracking-[-3px] text-[#1f2426] mb-6">
             {t("headline")}
           </h1>
