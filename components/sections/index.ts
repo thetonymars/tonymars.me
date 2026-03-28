@@ -7,7 +7,7 @@ import { CTASection } from "./CTASection"
 import type { ComponentType } from "react"
 import type { HomeSection } from "@/lib/site-config"
 
-export const sectionComponents: Record<HomeSection, ComponentType> = {
+export const sectionComponents: Record<string, ComponentType> = {
   hero: Hero,
   router: Router,
   proof: ProofStrip,

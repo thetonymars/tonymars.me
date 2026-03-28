@@ -13,7 +13,7 @@ export const siteConfig = {
     { key: "blog", href: "/blog" },
   ],
 
-  homeSections: ["hero", "router", "proof", "about", "blog-preview", "cta"] as const,
+  homeSections: ["hero", "router", "about", "cta"] as const,
 } as const
 
 export type HomeSection = (typeof siteConfig.homeSections)[number]
