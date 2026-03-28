@@ -24,15 +24,18 @@ export function ProofStrip() {
   }, [])
 
   return (
-    <section className="py-12 sm:py-16" ref={ref}>
+    <section className="py-12 sm:py-16 bg-white" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        <div className="grid grid-cols-2 gap-8 sm:flex sm:justify-center sm:gap-16">
+        <div className="grid grid-cols-2 gap-8 sm:flex sm:justify-center sm:items-center">
           {items.map((item, i) => (
-            <div key={i} className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold mb-1">
+            <div
+              key={i}
+              className={`text-center sm:px-14${i < items.length - 1 ? " sm:border-r sm:border-[#d0d5d9]" : ""}`}
+            >
+              <div className="text-5xl font-black tracking-[-2px] text-[#003561] mb-1">
                 {animate ? item.value : "0"}
               </div>
-              <div className="text-sm text-gray-500">{item.label}</div>
+              <div className="text-[13px] font-medium text-[#495257]">{item.label}</div>
             </div>
           ))}
         </div>
