@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd"
 import { UnderConstruction } from "@/components/UnderConstruction"
 
 export async function generateMetadata() {
-  if (process.env.NEXT_PUBLIC_UNDER_CONSTRUCTION === "true") {
+  if (process.env.NEXT_PUBLIC_SITE_LIVE !== "true") {
     return {
       title: "Тони Марс — Скоро",
       description: "Сайт обновляется. AI-инструменты для маркетинга.",
@@ -33,7 +33,7 @@ export async function generateMetadata() {
 }
 
 export default function HomePage() {
-  if (process.env.NEXT_PUBLIC_UNDER_CONSTRUCTION === "true") {
+  if (process.env.NEXT_PUBLIC_SITE_LIVE !== "true") {
     return <UnderConstruction />
   }
 
