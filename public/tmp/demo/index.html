@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Последний Раз — Программа похудения для женщин 45+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FAF6F0;
+  --cream-dark: #F0E6D8;
+  --brown-deep: #1A0F0A;
+  --brown-warm: #3D2B1F;
+  --brown-mid: #6B5344;
+  --brown-light: #8B7B6B;
+  --terracotta: #C25B3F;
+  --terracotta-dark: #A84832;
+  --terracotta-light: #E8D5CF;
+  --gold: #8B6F47;
+  --gold-light: #D4B896;
+  --sage: #7A8B6F;
+  --sage-light: #E8EDE5;
+  --section-dark: #2B1B12;
+  --section-dark-text: #F0E6D8;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Nunito', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--brown-warm);
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Sections */
+section {
+  padding: 80px 0;
+}
+
+section.dark {
+  background: var(--section-dark);
+  color: var(--section-dark-text);
+}
+
+section.alt {
+  background: var(--cream-dark);
+}
+
+section.sage-bg {
+  background: var(--sage-light);
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--brown-deep);
+}
+
+.dark h1, .dark h2, .dark h3 {
+  color: var(--section-dark-text);
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 32px; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 28px; }
+h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin-bottom: 20px; }
+
+p {
+  margin-bottom: 16px;
+}
+
+.lead {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.dark .eyebrow { color: var(--gold-light); }
+
+/* Fade-in animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Hero */
+.hero {
+  padding: 100px 0 80px;
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(170deg, var(--cream) 0%, var(--cream-dark) 50%, var(--terracotta-light) 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(194,91,63,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  line-height: 1.2;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+
+/* Sans list */
+.sans-list {
+  list-style: none;
+  margin: 32px 0;
+}
+
+.sans-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+  color: var(--brown-mid);
+}
+
+.sans-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 16px;
+  height: 2px;
+  background: var(--terracotta);
+}
+
+/* Requirements */
+.req-list {
+  list-style: none;
+  margin: 20px 0 32px;
+}
+
+.req-list li {
+  padding: 8px 0 8px 32px;
+  position: relative;
+  color: var(--brown-mid);
+}
+
+.req-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--sage);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Results list */
+.results-list {
+  list-style: none;
+  margin: 24px 0;
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(139,111,71,0.12);
+}
+
+.results-list li {
+  padding: 6px 0 6px 28px;
+  position: relative;
+  color: var(--brown-warm);
+}
+
+.results-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.results-list .etc {
+  padding-left: 28px;
+  color: var(--brown-light);
+  font-style: italic;
+}
+
+/* Pain section */
+.pain-pair {
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(240,230,216,0.3);
+}
+
+.pain-pair:last-of-type { border-bottom: none; }
+
+.pain-question {
+  font-size: 1.1rem;
+  color: var(--section-dark-text);
+  margin-bottom: 8px;
+}
+
+.pain-dismiss {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+/* Больше не надо list */
+.no-more-list {
+  list-style: none;
+  margin: 32px 0;
+}
+
+.no-more-list li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  color: rgba(240,230,216,0.8);
+  font-size: 1rem;
+}
+
+.no-more-list li::before {
+  content: '×';
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Triple rhythm */
+.rhythm {
+  margin: 40px 0;
+  padding: 32px;
+  border-left: 3px solid var(--gold);
+  background: rgba(139,111,71,0.08);
+  border-radius: 0 12px 12px 0;
+}
+
+.rhythm p {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.rhythm .strong-line {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--section-dark-text);
+}
+
+.dark .rhythm { background: rgba(139,111,71,0.15); }
+
+/* Vehicle steps */
+.steps {
+  counter-reset: step;
+  margin: 32px 0;
+}
+
+.step {
+  counter-increment: step;
+  position: relative;
+  padding: 24px 24px 24px 72px;
+  margin-bottom: 16px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(139,111,71,0.1);
+}
+
+.step::before {
+  content: counter(step);
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  width: 36px;
+  height: 36px;
+  background: var(--terracotta);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Deliverables */
+.deliverable {
+  padding: 28px;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid rgba(139,111,71,0.1);
+  box-shadow: 0 4px 20px rgba(26,15,10,0.04);
+}
+
+.deliverable h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--brown-deep);
+}
+
+.deliverable p {
+  color: var(--brown-mid);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* Price */
+.price-math {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--brown-mid);
+  line-height: 1.9;
+}
+
+.price-math .calc-line {
+  font-weight: 600;
+  color: var(--brown-warm);
+}
+
+.price-anchor {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--brown-light);
+  text-decoration: line-through;
+  text-decoration-color: var(--terracotta);
+  display: block;
+  margin: 12px 0 4px;
+}
+
+.price-real {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--terracotta);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.price-box {
+  text-align: center;
+  padding: 48px 32px;
+  margin: 40px 0;
+  background: white;
+  border-radius: 20px;
+  border: 2px solid var(--terracotta-light);
+  box-shadow: 0 8px 40px rgba(194,91,63,0.08);
+}
+
+.price-box .savings {
+  font-size: 0.95rem;
+  color: var(--sage);
+  font-weight: 600;
+}
+
+/* CTA Button */
+.cta-btn {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 32px auto;
+  padding: 20px 40px;
+  background: var(--terracotta);
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 24px rgba(194,91,63,0.25);
+  letter-spacing: 0.02em;
+}
+
+.cta-btn:hover {
+  background: var(--terracotta-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(194,91,63,0.35);
+}
+
+.cta-sub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--brown-light);
+  margin-top: 12px;
+}
+
+.dark .cta-btn {
+  background: var(--gold);
+  box-shadow: 0 6px 24px rgba(139,111,71,0.3);
+}
+
+.dark .cta-btn:hover {
+  background: var(--gold-light);
+  color: var(--brown-deep);
+}
+
+/* Bonus card */
+.bonus-card {
+  padding: 36px;
+  margin-bottom: 28px;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid rgba(139,111,71,0.1);
+  box-shadow: 0 4px 20px rgba(26,15,10,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.bonus-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--terracotta), var(--gold));
+}
+
+.bonus-number {
+  display: inline-block;
+  background: var(--terracotta);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.bonus-card h3 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.bonus-card .hook {
+  font-size: 1.05rem;
+  color: var(--brown-warm);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.bonus-card .features {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.bonus-card .features li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--brown-mid);
+}
+
+.bonus-card .features li::before {
+  content: '•';
+  position: absolute;
+  left: 6px;
+  color: var(--terracotta);
+  font-weight: 700;
+}
+
+.bonus-result {
+  font-weight: 700;
+  color: var(--brown-deep);
+  margin: 16px 0 12px;
+  font-size: 1rem;
+}
+
+.bonus-gift {
+  font-size: 0.9rem;
+  color: var(--sage);
+  font-style: italic;
+}
+
+/* Value stack */
+.stack-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(139,111,71,0.1);
+}
+
+.dark .stack-item { border-bottom-color: rgba(240,230,216,0.15); }
+
+.stack-item .name {
+  font-size: 1rem;
+  flex: 1;
+  padding-right: 16px;
+}
+
+.stack-item .name .check {
+  color: var(--sage);
+  margin-right: 8px;
+  font-weight: 700;
+}
+
+.dark .stack-item .name .check { color: var(--gold-light); }
+
+.stack-item .price-tag {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--brown-mid);
+  white-space: nowrap;
+}
+
+.dark .stack-item .price-tag { color: var(--gold-light); }
+
+.stack-total {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.stack-total .label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brown-light);
+  margin-bottom: 8px;
+}
+
+.dark .stack-total .label { color: var(--gold-light); }
+
+.stack-total .amount {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--brown-deep);
+}
+
+.dark .stack-total .amount { color: var(--section-dark-text); }
+
+/* Guarantee */
+.guarantee-box {
+  padding: 48px;
+  background: white;
+  border-radius: 24px;
+  border: 2px solid var(--sage-light);
+  position: relative;
+}
+
+.guarantee-box::before {
+  content: '🛡';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.4rem;
+  background: var(--cream);
+  padding: 0 16px;
+}
+
+.guarantee-box .doubt {
+  font-style: italic;
+  color: var(--brown-mid);
+  padding: 8px 0 8px 20px;
+  border-left: 2px solid var(--cream-dark);
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.guarantee-levels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0;
+}
+
+.g-level {
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--cream);
+}
+
+.g-level.l1 { border: 2px solid var(--sage); }
+.g-level.l2 { border: 2px solid var(--terracotta); }
+
+.g-level .g-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.g-level.l1 .g-label { color: var(--sage); }
+.g-level.l2 .g-label { color: var(--terracotta); }
+
+.g-level .g-text {
+  font-size: 0.92rem;
+  color: var(--brown-mid);
+  line-height: 1.6;
+}
+
+.even-if-list {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.even-if-list li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: var(--brown-mid);
+}
+
+.even-if-list li::before {
+  content: '— ';
+  color: var(--terracotta);
+}
+
+/* Urgency */
+.urgency-banner {
+  text-align: center;
+  padding: 48px 32px;
+  background: linear-gradient(135deg, var(--section-dark) 0%, #3D2218 100%);
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.urgency-banner h2 {
+  color: var(--gold-light);
+  font-size: 1.6rem;
+}
+
+.urgency-banner .seats {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  margin: 20px 0;
+}
+
+.urgency-banner p {
+  color: rgba(240,230,216,0.7);
+  font-size: 0.95rem;
+}
+
+.timer-placeholder {
+  display: inline-block;
+  padding: 16px 32px;
+  background: rgba(194,91,63,0.15);
+  border-radius: 12px;
+  color: var(--terracotta);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 20px 0;
+  letter-spacing: 0.1em;
+}
+
+/* PS section */
+.ps-section {
+  padding: 60px 0;
+  border-top: 1px solid rgba(139,111,71,0.15);
+}
+
+.ps-section .ps-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--brown-deep);
+  margin-bottom: 12px;
+}
+
+.ps-list {
+  list-style: none;
+  margin: 16px 0 28px;
+}
+
+.ps-list li {
+  padding: 4px 0 4px 20px;
+  position: relative;
+  font-size: 0.92rem;
+  color: var(--brown-mid);
+}
+
+.ps-list li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  font-weight: 700;
+  color: var(--terracotta);
+}
+
+.ps-note {
+  font-size: 0.95rem;
+  color: var(--brown-mid);
+  margin-bottom: 20px;
+}
+
+/* Divider */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--terracotta);
+  margin: 0 auto 40px;
+  opacity: 0.4;
+}
+
+/* 3 questions */
+.question-block {
+  margin: 36px 0;
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 16px;
+  border-left: 3px solid var(--gold);
+}
+
+.question-block p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--brown-warm);
+}
+
+.question-block .q-amount {
+  font-weight: 700;
+  color: var(--terracotta);
+}
+
+/* Strategic */
+.strategic p {
+  line-height: 1.9;
+}
+
+.strategic .strong-para {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  section { padding: 56px 0; }
+  .hero { min-height: auto; padding: 80px 0 60px; }
+  .guarantee-levels { grid-template-columns: 1fr; }
+  .bonus-card { padding: 28px 24px; }
+  .price-box { padding: 36px 24px; }
+  .guarantee-box { padding: 36px 24px; }
+  .step { padding: 20px 20px 20px 60px; }
+  .cta-btn { font-size: 1rem; padding: 18px 32px; }
+}
+
+/* Bonus intro transition */
+.bonus-intro {
+  text-align: center;
+  padding: 48px 0 20px;
+}
+
+.bonus-intro p {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--brown-mid);
+  line-height: 1.6;
+}
+
+/* Testimonial placeholder */
+.testimonial-placeholder {
+  text-align: center;
+  padding: 60px 32px;
+  border: 2px dashed rgba(139,111,71,0.2);
+  border-radius: 20px;
+  color: var(--brown-light);
+  font-size: 0.95rem;
+}
+
+.testimonial-placeholder .icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow reveal">Для женщин 45+</span>
+    <h1 class="reveal reveal-delay-1">Программа &laquo;Последний Раз&raquo; убирает 10-15 кг за 12 недель и фиксирует вес <em>навсегда</em></h1>
+    <p class="lead reveal reveal-delay-2">Без того, на что нутрициолог с психологом потратят полгода и&nbsp;300&nbsp;000&nbsp;руб.</p>
+
+    <p class="reveal reveal-delay-2" style="margin-top:28px; font-family: var(--font-display); font-size:1.3rem; font-style:italic; color:var(--brown-mid);">И это...</p>
+
+    <ul class="sans-list reveal reveal-delay-3">
+      <li>без подсчета калорий и взвешивания порций</li>
+      <li>без голодовок и жестких диет</li>
+      <li>без спортзала и изнурительных тренировок</li>
+      <li>без отказа от сладкого и любимой еды</li>
+      <li>без опасных таблеток и уколов</li>
+      <li>без долгой готовки отдельных &laquo;диетических&raquo; блюд</li>
+    </ul>
+
+    <p class="reveal" style="margin-top:36px; font-weight:600; color:var(--brown-mid);">Достаточно иметь:</p>
+    <ul class="req-list reveal">
+      <li>Телефон или компьютер с интернетом</li>
+      <li>15 минут в день на себя</li>
+      <li>Готовность попробовать по-другому</li>
+    </ul>
+
+    <p class="reveal" style="margin-top:32px;">Просто начинаешь программу. И уже через неделю видишь:</p>
+    <ul class="results-list reveal">
+      <li>Минус 2-3 кг за первую неделю</li>
+      <li>Четкий план питания без единого подсчета</li>
+      <li>Лицо стало четче, кольца свободнее</li>
+      <li>Энергия вместо привычной тяжести после еды</li>
+      <li>Спокойствие вместо чувства вины за съеденное</li>
+      <li>Одежда сидит иначе. И это только начало</li>
+      <li class="etc">и т.д. и т.д. и т.д</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="dark">
+  <div class="container">
+    <h2 class="reveal">Знакомо?</h2>
+
+    <div class="pain-pair reveal">
+      <p class="pain-question">Сидишь на диете 5 дней, потом срываешься и набираешь больше прежнего?</p>
+      <p class="pain-dismiss">Можешь забыть об этом.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Считаешь калории, взвешиваешь порции, ведешь дневники питания?</p>
+      <p class="pain-dismiss">Больше не нужно.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Гормоны, климакс, замедленный метаболизм. И ни одна диета уже не работает?</p>
+      <p class="pain-dismiss">Теперь все по-другому.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Ненавидишь себя после каждого срыва и не можешь остановиться?</p>
+      <p class="pain-dismiss">Больше и не надо.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Вес стоит намертво, хотя ешь меньше всех за столом?</p>
+      <p class="pain-dismiss">Теперь вообще не нужно терпеть это.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Каждое утро встаешь на весы. И настроение на весь день испорчено?</p>
+      <p class="pain-dismiss">Можешь забыть об этом.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Живешь по кругу &laquo;диета-срыв-обжорство-истерика-ненависть к себе&raquo;?</p>
+      <p class="pain-dismiss">Теперь все по-другому.</p>
+    </div>
+    <div class="pain-pair reveal">
+      <p class="pain-question">Пробовала уже все. И ничего не держится дольше месяца?</p>
+      <p class="pain-dismiss">Больше не нужно искать.</p>
+    </div>
+
+    <h3 class="reveal" style="margin-top:48px; color:var(--gold-light);">Больше не надо...</h3>
+    <ul class="no-more-list reveal">
+      <li>Сидеть на очередной диете, которая закончится откатом</li>
+      <li>Считать каждую калорию и взвешивать каждый кусок еды</li>
+      <li>Готовить себе отдельно от семьи</li>
+      <li>Ненавидеть себя за съеденную конфету или кусочек торта</li>
+      <li>Отказываться от сладкого и любимых блюд навсегда</li>
+      <li>Платить нутрициологу 10 000 руб. за консультацию без гарантий</li>
+      <li>Колоть себе Оземпик и бояться побочек</li>
+      <li>Тащить себя в спортзал через стыд и усталость</li>
+      <li>Взвешиваться каждое утро и зависеть от цифры</li>
+      <li>Ждать месяцами результата, который потом уходит</li>
+    </ul>
+
+    <p class="reveal" style="font-family:var(--font-display); font-size:1.4rem; font-style:italic; color:var(--gold-light); margin-top:36px;">Можешь забыть обо всем этом раз и навсегда.</p>
+
+    <div class="rhythm reveal">
+      <p class="strong-line">Программа &laquo;Последний Раз&raquo; берет это на себя.</p>
+      <p>Система питания работает сама. Без подсчетов. Без весов. Без приложений.</p>
+      <p>Протокол Антисрыв работает сам. Без силы воли.</p>
+      <p>Наставник ведет за руку. Без угадывания.</p>
+    </div>
+
+    <p class="reveal" style="color:rgba(240,230,216,0.7); margin-top:24px;">Уже не нужен нутрициолог за 10 000 руб. за одну консультацию.<br>Программа дает и систему питания, и поддержку, и корректировку. Все в одном.</p>
+    <p class="reveal" style="font-family:var(--font-display); font-size:1.2rem; color:var(--gold-light); margin-top:20px;">А тебе больше не нужно быть диетологом самой себе.<br>Программа &laquo;Последний Раз&raquo; знает, что делать.</p>
+  </div>
+</section>
+
+<!-- VEHICLE -->
+<section>
+  <div class="container">
+    <h2 class="reveal" style="font-style:italic;">Наконец-то, бесконечный цикл диет больше не тормозит твою жизнь.</h2>
+
+    <div class="section-divider reveal"></div>
+
+    <h2 class="reveal">Как это работает?</h2>
+
+    <div class="steps">
+      <div class="step reveal">Заполняешь короткую анкету и получаешь персональный план питания на первый месяц. Под твой возраст, гормоны и образ жизни</div>
+      <div class="step reveal reveal-delay-1">Начинаешь с протокола &laquo;Быстрый Старт&raquo;. Первые 2-3 кг уходят уже за первую неделю. И ты видишь: это работает</div>
+      <div class="step reveal reveal-delay-2">Осваиваешь Метод Тарелки 45+. Простая визуальная система без единого подсчета, адаптированная под гормональные изменения после 45</div>
+      <div class="step reveal reveal-delay-3">Каждую неделю приходишь на групповой разбор с наставником в Zoom. Получаешь личную корректировку и поддержку группы</div>
+      <div class="step reveal reveal-delay-4">Через 12 недель. Минус 10-15 кг. Минус 1-2 размера одежды. И новые пищевые привычки, которые держат вес сами. Навсегда</div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="alt">
+  <div class="container">
+    <h2 class="reveal">Что конкретно ты получишь?</h2>
+
+    <div class="deliverable reveal">
+      <h3>Система питания &laquo;Метод Тарелки 45+&raquo;</h3>
+      <p>Полная система питания на 12 недель. Визуальный гид по порциям + адаптация под климакс и гормональные изменения. Тело не входит в режим голодания. Метаболизм не замедляется. Нет отката.</p>
+    </div>
+    <div class="deliverable reveal reveal-delay-1">
+      <h3>Протокол &laquo;Антисрыв&raquo;</h3>
+      <p>Как перестать срываться навсегда без силы воли. Работа с эмоциональным заеданием, стресс-едой и ночными перекусами.</p>
+    </div>
+    <div class="deliverable reveal reveal-delay-2">
+      <h3>&laquo;Быстрый Старт&raquo;: 7-дневный план</h3>
+      <p>Что есть, что пить, что делать утром. Простые действия, видимый результат за 7 дней. Фундамент мотивации на весь курс.</p>
+    </div>
+    <div class="deliverable reveal reveal-delay-3">
+      <h3>Еженедельные групповые разборы (12 сессий)</h3>
+      <p>12 живых сессий с наставником. Разбор проблем. Корректировка плана. Мотивация от группы. Не просто курс, а сопровождение.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section>
+  <div class="container">
+    <h2 class="reveal">Сколько стоит программа &laquo;Последний Раз&raquo;</h2>
+
+    <div class="price-math reveal">
+      <p>Нутрициолог берет 5 000-10 000 руб. за одну консультацию.<br>Без гарантии результата. Без адаптации под климакс.</p>
+      <p>Психолог по пищевому поведению. 5 000-8 000 руб. за сессию.<br>Курс из 5-8 сессий = 25 000-64 000 руб. И это только про голову. Без системы питания.</p>
+      <p style="margin-top:24px; font-weight:600;">Давай посчитаем.</p>
+      <p class="calc-line">12 недель с нутрициологом: 60 000-120 000 руб.</p>
+      <p class="calc-line">Плюс психолог: 25 000-64 000 руб.</p>
+      <p class="calc-line">Плюс тренер: 30 000-50 000 руб.</p>
+      <p style="margin-top:20px; font-style:italic; color:var(--brown-mid);">Плюс это выматывает. Каждая новая попытка заканчивается откатом. И ты уже не понимаешь. Проблема в диете или в тебе.</p>
+      <p style="margin-top:20px; font-weight:700; font-size:1.1rem;">В любом случае. Через специалистов или самостоятельно. Меньше 150 000 не получится.</p>
+    </div>
+
+    <div style="margin-top:56px;">
+      <h2 class="reveal">Подойдет ли тебе программа &laquo;Последний Раз&raquo;?</h2>
+      <p class="reveal" style="font-family:var(--font-display); font-size:1.2rem; font-style:italic; color:var(--brown-mid);">Задай себе три вопроса...</p>
+
+      <div class="question-block reveal">
+        <p>Если бы ты за 12 недель сбросила 10-15 кг и зафиксировала вес навсегда. Без возврата. Без отката. Раз и навсегда...</p>
+        <p style="margin-top:12px;">Стоило бы это <span class="q-amount">150 000 рублей</span>?</p>
+      </div>
+      <div class="question-block reveal">
+        <p>А если бы тебе больше не нужно было считать калории, сидеть на диетах, бороться с силой воли, и программа все это делала бы за тебя?</p>
+        <p style="margin-top:12px;">Была бы такая система ценнее <span class="q-amount">150 000 рублей</span>?</p>
+      </div>
+      <div class="question-block reveal">
+        <p>А если бы ты навсегда вышла из цикла &laquo;похудела-набрала&raquo; и больше никогда не тратила деньги на диетологов, марафоны и Оземпик?</p>
+        <p style="margin-top:12px;">Разве это не стоило бы еще дороже <span class="q-amount">150 000 руб.</span>?</p>
+      </div>
+
+      <p class="reveal" style="margin-top:36px; font-family:var(--font-display); font-size:1.5rem; font-weight:600; text-align:center;">Но сегодня я не буду брать с тебя 150 000 руб...<br><span style="font-style:italic; color:var(--brown-mid);">Я поступлю умнее...</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIC REASON + PRICE REVEAL -->
+<section class="alt strategic">
+  <div class="container">
+    <p class="reveal strong-para">Я отдам тебе эту программу в 10 раз дешевле.</p>
+    <p class="reveal">Но не потому, что хочу просто сделать подарок.</p>
+    <p class="reveal">Моя цель. Стратегическая.</p>
+    <p class="reveal">Сделать не разовую продажу, а выстроить долгосрочные отношения.</p>
+    <p class="reveal">Сделать тебя своим фанатом. Чтобы ты покупала у меня снова и снова и снова на протяжении долгих лет.</p>
+    <p class="reveal">И рекомендовала мои продукты своим знакомым, подругам и близким.</p>
+    <p class="reveal" style="color:var(--brown-mid);">Ведь рекомендуя качественный продукт подруги благодарят именно тебя за рекомендацию.</p>
+    <p class="reveal" style="font-style:italic; color:var(--brown-mid);">А мусор никто рекомендовать не будет.</p>
+
+    <div class="price-box reveal">
+      <p style="font-size:0.95rem; color:var(--brown-mid); margin-bottom:20px;">Поэтому вместо 150 000 рублей...</p>
+      <span class="price-anchor">150 000 руб.</span>
+      <span class="price-real">14 990 руб.</span>
+      <p class="savings">Скидка 135 010 рублей!</p>
+      <p style="margin-top:16px; font-size:0.9rem; color:var(--brown-light);">Сразу после оплаты на твой e-mail придет доступ</p>
+    </div>
+
+    <a href="#" class="cta-btn reveal">Получить программу &laquo;Последний Раз&raquo; за 14 990 руб.</a>
+    <p class="cta-sub reveal">Гарантия возврата 14 дней без вопросов</p>
+  </div>
+</section>
+
+<!-- BONUSES -->
+<section>
+  <div class="container">
+    <div class="bonus-intro reveal">
+      <p>Однако, есть еще кое что...</p>
+      <p style="margin-top:12px;">Если ты примешь это предложение до окончания таймера...<br>в подарок ты получишь...</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 1</span>
+      <h3>Аудио-Курс &laquo;Внутренний Разворот: Из Ненависти К Себе. В Заботу За 7 Дней&raquo;</h3>
+      <div class="hook">
+        <p>Ты ругаешь себя после каждого срыва. Смотришь в зеркало. И хочется отвернуться.</p>
+        <p>Эта ненависть к себе не помогает. Она запускает новый срыв. Потом новое чувство вины. Круг замкнулся.</p>
+      </div>
+      <ul class="features">
+        <li>7 аудио-практик по 15 минут. Слушаешь перед сном</li>
+        <li>Замена внутреннего критика на внутреннего тренера</li>
+        <li>Меняется не поведение, а то, что его запускает</li>
+        <li>К концу недели зеркало больше не вызывает отвращение</li>
+        <li>Формат MP3. Просто включаешь и слушаешь</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Мотивация переключается с ненависти на заботу. Срывы уменьшаются.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 2</span>
+      <h3>&laquo;30 Рецептов: Вся Семья Ест. Ты Худеешь&raquo;</h3>
+      <div class="hook">
+        <p>Готовить отдельно от семьи. Нет ни времени, ни сил. А дома постоянно вкусняшки.</p>
+        <p>Домашние не сидят на диете. Ты либо готовишь два блюда, либо срываешься на их еду.</p>
+      </div>
+      <ul class="features">
+        <li>30 рецептов по Методу Тарелки 45+. Одна готовка на всех</li>
+        <li>Завтраки, обеды, ужины и перекусы</li>
+        <li>До 15 минут на приготовление</li>
+        <li>Обычные продукты из ближайшего магазина</li>
+        <li>Правильный баланс автоматически</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Одна готовка на всех. Семья ест с удовольствием, ты худеешь.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 3</span>
+      <h3>Шпаргалка &laquo;Что Выбрать В Ресторане, На Празднике и В Гостях&raquo;</h3>
+      <div class="hook">
+        <p>Праздник, ресторан, гости. И ты не знаешь, что можно есть. Съела торт. И потом три дня чувство вины.</p>
+      </div>
+      <ul class="features">
+        <li>Визуальная карточка на телефон. Открываешь перед заказом</li>
+        <li>5 ситуаций: ресторан, праздник, гости, фуршет, поездка</li>
+        <li>Принцип &laquo;лучший выбор из того что есть&raquo;</li>
+        <li>Умещается на один экран</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Ешь в ресторане, на празднике, в гостях без вины и набора веса.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 4</span>
+      <h3>Персональный Разбор &laquo;Почему Именно У Тебя Не Уходит&raquo;</h3>
+      <div class="hook">
+        <p>&laquo;У меня особый случай. Гормоны, возраст, наследственность.&raquo; Ты чувствуешь, что массовые марафоны просто не для тебя.</p>
+        <p>Проблема не в тебе. Проблема в том, что никто не смотрел именно на тебя.</p>
+      </div>
+      <ul class="features">
+        <li>Индивидуальная сессия 30 минут 1-на-1 с наставником</li>
+        <li>Приходишь с дневником питания. Наставник находит точки, где ты теряешь результат</li>
+        <li>Не общие советы, а разбор твоей ситуации</li>
+        <li>Формат Zoom. Можно из любой точки мира</li>
+        <li>Запись сессии остается у тебя</li>
+        <li>Выходишь с конкретным списком шагов</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Получаешь разбор конкретно твоей ситуации. Понимаешь, что именно мешало.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 5</span>
+      <h3>Telegram-Бот &laquo;Мой Прогресс&raquo;. Трекер Без Весов</h3>
+      <div class="hook">
+        <p>Каждое утро встаешь на весы. И настроение уже сломлено. Цифра не та.</p>
+        <p>Весы показывают воду, соль, гормоны. Они не показывают жир. Но ты видишь только цифру. И эта цифра убивает мотивацию быстрее любого срыва.</p>
+      </div>
+      <ul class="features">
+        <li>Вводишь данные раз в неделю. Занимает 2 минуты</li>
+        <li>5 параметров: объемы, самочувствие, энергия, сон, отношение к еде</li>
+        <li>Бот показывает тренд за недели, а не колебания за дни</li>
+        <li>Видишь реальную картину: худеешь, даже когда весы стоят</li>
+        <li>Работает прямо в Telegram</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Видишь прогресс по 5 параметрам кроме веса. Понимаешь, что худеешь.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 6</span>
+      <h3>Готовый План Питания На Первый Месяц &laquo;Просто Следуй&raquo;</h3>
+      <div class="hook">
+        <p>Ты не хочешь разбираться. Ты хочешь просто есть и худеть.</p>
+        <p>Первые недели самые сложные. Все новое. Именно здесь большинство сдается. Не потому что метод не работает, а потому что слишком много думать.</p>
+      </div>
+      <ul class="features">
+        <li>Заполняешь анкету за 5 минут: предпочтения, аллергии, бюджет</li>
+        <li>Получаешь персонализированный план на 4 недели</li>
+        <li>По Методу Тарелки 45+. Правильный баланс автоматически</li>
+        <li>Обычные продукты из любого магазина</li>
+        <li>Первый месяц не думаешь: открываешь план. Ешь что написано</li>
+        <li>План готов за 48 часов после анкеты</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Первый месяц не тратишь силы на решения. Просто следуешь. И видишь результат.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+
+    <div class="bonus-card reveal">
+      <span class="bonus-number">БОНУС 7</span>
+      <h3>Закрытый Чат &laquo;Девочки 45+&raquo;</h3>
+      <div class="hook">
+        <p>Ты не веришь в свои силы. Семья не понимает. Подруги не поддерживают.</p>
+        <p>Когда ты одна, первый же трудный день рушит все. А без поддержки даже самый правильный метод не работает.</p>
+      </div>
+      <ul class="features">
+        <li>Закрытое сообщество женщин с такой же ситуацией</li>
+        <li>Модерация: без рекламы, без негатива, без осуждения</li>
+        <li>Реальные истории: &laquo;если она в 52 смогла, и я смогу&raquo;</li>
+        <li>Еженедельные мини-челленджи</li>
+        <li>Наставник отвечает между сессиями</li>
+        <li>Доступ на время программы + 3 месяца после</li>
+      </ul>
+      <p class="bonus-result">РЕЗУЛЬТАТ: Окружение женщин, которые понимают. Поддержка даже в трудные дни.</p>
+      <p class="bonus-gift">В подарок при покупке программы &laquo;Последний Раз&raquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE STACK -->
+<section class="dark">
+  <div class="container">
+    <h2 class="reveal">Давай подитожим</h2>
+
+    <div class="reveal">
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>Система питания &laquo;Метод Тарелки 45+&raquo;</span><span class="price-tag">30 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>Протокол &laquo;Антисрыв&raquo;</span><span class="price-tag">15 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>&laquo;Быстрый Старт&raquo;: 7-дневный план</span><span class="price-tag">5 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>Групповые разборы (12 сессий)</span><span class="price-tag">36 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 1: Аудио-Курс &laquo;Внутренний Разворот&raquo;</span><span class="price-tag">10 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 2: 30 Рецептов для всей семьи</span><span class="price-tag">5 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 3: Шпаргалка для ресторана</span><span class="price-tag">3 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 4: Персональный Разбор</span><span class="price-tag">10 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 5: Telegram-Бот Трекер</span><span class="price-tag">5 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 6: Готовый План на месяц</span><span class="price-tag">15 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 7: Закрытый Чат &laquo;Девочки 45+&raquo;</span><span class="price-tag">5 000 руб.</span></div>
+    </div>
+
+    <div class="stack-total reveal">
+      <p class="label">Суммарная ценность</p>
+      <p class="amount">139 000 руб.</p>
+    </div>
+
+    <p class="reveal" style="text-align:center; color:rgba(240,230,216,0.7);">Но сегодня тебе не нужно платить эту сумму...</p>
+    <p class="reveal" style="text-align:center; font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--gold-light); margin:16px 0;">всего 14 990 руб.</p>
+
+    <a href="#" class="cta-btn reveal" style="background:var(--gold);">Забери все это по спец. цене прямо сейчас!</a>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section>
+  <div class="container">
+    <div class="guarantee-box reveal">
+      <h2 style="text-align:center; margin-top:16px;">Гарантия &laquo;Последний Раз Или Деньги Назад&raquo;</h2>
+
+      <p style="text-align:center; font-size:1.05rem; color:var(--brown-mid); margin:24px 0 28px;">Я беру все риски на себя.</p>
+
+      <p style="margin-bottom:20px;">Я знаю, как это бывает. Ты читаешь описание, думаешь:</p>
+
+      <p class="doubt">&laquo;Вроде звучит круто... но что, если это не сработает для меня?&raquo;</p>
+      <p class="doubt">&laquo;А если я заплачу. И это окажется просто очередной инфопродукт-мусор?&raquo;</p>
+      <p class="doubt">&laquo;А вдруг это не то, что мне нужно?&raquo;</p>
+
+      <p style="margin:20px 0;">Я тебя прекрасно понимаю. Именно поэтому я убираю все риски.</p>
+
+      <div class="guarantee-levels">
+        <div class="g-level l1">
+          <p class="g-label">Уровень 1: Безусловная</p>
+          <p class="g-text">14 дней на &laquo;подумать&raquo;. Просто начни программу. Пройди &laquo;Быстрый Старт&raquo;. Попробуй Метод Тарелки хотя бы неделю. Если по любой причине захочешь возврат, напиши на hello@yellows.one. 100% денег назад без вопросов.</p>
+        </div>
+        <div class="g-level l2">
+          <p class="g-label">Уровень 2: За результат</p>
+          <p class="g-text">Если за 12 недель ты выполняла программу (8+ разборов, трекер еженедельно, Метод Тарелки) и не сбросила минимум 5 кг. Полный возврат денег.</p>
+        </div>
+      </div>
+
+      <ul class="even-if-list">
+        <li>Даже если передумаешь через 1 минуту после покупки</li>
+        <li>Даже если просто решишь, что тебе не нравится формат</li>
+        <li>Даже если просто почувствуешь, что &laquo;не зашло&raquo;</li>
+      </ul>
+
+      <p style="font-weight:700; text-align:center; margin:24px 0 8px; font-size:1.05rem;">Ты либо получаешь мощную систему, либо не платишь ни копейки.</p>
+      <p style="text-align:center; color:var(--sage); font-style:italic;">А все бонусы можешь оставить себе.</p>
+      <p style="text-align:center; font-family:var(--font-display); font-size:1.2rem; font-weight:600; margin-top:20px;">Все риски на мне.</p>
+    </div>
+
+    <a href="#" class="cta-btn reveal" style="margin-top:40px;">Попробуй прямо сейчас. Получи доступ без риска!</a>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="alt">
+  <div class="container">
+    <h2 class="reveal">Что говорят наши клиенты</h2>
+    <div class="testimonial-placeholder reveal">
+      <div class="icon">&#128172;</div>
+      <p>Здесь будут реальные отзывы клиентов с фото до/после</p>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<section>
+  <div class="container">
+    <div class="urgency-banner reveal">
+      <h2>Ограниченное предложение</h2>
+      <p class="seats">Осталось только 30 мест в потоке</p>
+      <p>Если ты читаешь это сейчас, значит, у тебя еще есть шанс получить все бонусы бесплатно.</p>
+      <div class="timer-placeholder">00 : 00 : 00</div>
+      <p style="margin-top:16px;">Когда часы покажут 00:00 это предложение сгорит.</p>
+      <p style="font-size:0.85rem; margin-top:8px; opacity:0.6;">Попробуй обновить страницу. Таймер продолжит тикать.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE STACK REPEAT -->
+<section class="dark">
+  <div class="container">
+    <h2 class="reveal" style="color:var(--gold-light);">Забирай:</h2>
+
+    <div class="reveal">
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>Система питания &laquo;Метод Тарелки 45+&raquo;</span><span class="price-tag">30 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>Протокол &laquo;Антисрыв&raquo;</span><span class="price-tag">15 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>&laquo;Быстрый Старт&raquo;: 7-дневный план</span><span class="price-tag">5 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>Групповые разборы (12 сессий)</span><span class="price-tag">36 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 1: Аудио-Курс &laquo;Внутренний Разворот&raquo;</span><span class="price-tag">10 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 2: 30 Рецептов для всей семьи</span><span class="price-tag">5 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 3: Шпаргалка для ресторана</span><span class="price-tag">3 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 4: Персональный Разбор</span><span class="price-tag">10 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 5: Telegram-Бот Трекер</span><span class="price-tag">5 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 6: Готовый План на месяц</span><span class="price-tag">15 000 руб.</span></div>
+      <div class="stack-item"><span class="name"><span class="check">&#10003;</span>БОНУС 7: Закрытый Чат &laquo;Девочки 45+&raquo;</span><span class="price-tag">5 000 руб.</span></div>
+    </div>
+
+    <div class="stack-total reveal">
+      <p class="label">Суммарная ценность</p>
+      <p class="amount">139 000 руб.</p>
+    </div>
+
+    <p class="reveal" style="text-align:center; color:rgba(240,230,216,0.7);">Забирай все по спец. цене прямо сейчас</p>
+    <p class="reveal" style="text-align:center; font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--gold-light); margin:16px 0;">14 990 руб.</p>
+
+    <a href="#" class="cta-btn reveal" style="background:var(--gold);">Забирай все по спец. цене прямо сейчас!</a>
+  </div>
+</section>
+
+<!-- P.S. -->
+<section class="ps-section">
+  <div class="container">
+    <p class="ps-label reveal">P.S.</p>
+    <p class="reveal">После оплаты 14 990 руб. ты получишь...</p>
+    <ul class="ps-list reveal">
+      <li>Система питания &laquo;Метод Тарелки 45+&raquo; (визуальный гид + видео-модули)</li>
+      <li>Протокол &laquo;Антисрыв&raquo; (аудио-модуль + карточки-памятки)</li>
+      <li>&laquo;Быстрый Старт&raquo;: 7-дневный план (PDF)</li>
+      <li>12 еженедельных групповых разборов с наставником (Zoom)</li>
+      <li>БОНУС 1: Аудио-Курс &laquo;Внутренний Разворот&raquo;</li>
+      <li>БОНУС 2: &laquo;30 Рецептов: Вся Семья Ест. Ты Худеешь&raquo;</li>
+      <li>БОНУС 3: Шпаргалка для ресторана, праздника и гостей</li>
+      <li>БОНУС 4: Персональный Разбор (Zoom 30 мин)</li>
+      <li>БОНУС 5: Telegram-Бот &laquo;Мой Прогресс&raquo;. Трекер Без Весов</li>
+      <li>БОНУС 6: Готовый План Питания На Первый Месяц</li>
+      <li>БОНУС 7: Закрытый Чат &laquo;Девочки 45+&raquo;</li>
+    </ul>
+
+    <p class="ps-label reveal">P.P.S.</p>
+    <p class="ps-note reveal">И помни... ты защищена на 14 дней безусловно и на 90 дней за результат. Сможешь потребовать возврат денег, когда захочешь.</p>
+
+    <p class="ps-label reveal">P.P.P.S.</p>
+    <p class="ps-note reveal">Осталось только 30 мест в потоке. Когда закончатся, прием в программу закроется. Часики тикают...</p>
+  </div>
+</section>
+
+<script>
+// Intersection Observer for reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
