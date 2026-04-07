@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/tmp/demo",
+        destination: "/tmp/demo/index.html",
+      },
+    ]
+  },
 }
 
 export default withNextIntl(nextConfig)
