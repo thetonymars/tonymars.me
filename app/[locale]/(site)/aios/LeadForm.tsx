@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-const ENDPOINT = "https://aios-skills.vercel.app/lead"
+const ENDPOINT = "/api/lead"
 
 type State = "idle" | "loading" | "done" | "error"
 
@@ -19,7 +19,7 @@ export function LeadForm() {
       const r = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, lang: "ru" }),
       })
       const d = await r.json().catch(() => ({}))
       if (r.ok) {
@@ -37,10 +37,10 @@ export function LeadForm() {
   if (state === "done") {
     return (
       <div className="rounded-2xl border border-green-200 bg-green-50 p-8">
-        <p className="text-xl font-semibold text-green-900">Проверьте почту 📬</p>
+        <p className="text-xl font-semibold text-green-900">Проверьте почту</p>
         <p className="mt-2 text-green-800">
-          Мы отправили письмо с командой установки на <b>{email}</b>. Откройте
-          его в вашем AI-клиенте и вставьте промпт.
+          Отправили письмо на <b>{email}</b>. Нажмите ссылку в нём — откроется
+          страница с командой установки. Письма нет? Загляните в спам.
         </p>
       </div>
     )
