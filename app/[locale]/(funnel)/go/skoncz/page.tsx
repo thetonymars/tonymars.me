@@ -817,16 +817,16 @@ export default function SkonczLanding() {
           <p className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">
             Zamów Sprint 30 Dni
           </p>
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
             Gotów żeby skończyć to co zaczynasz?
           </h2>
-          <p className="text-2xl text-gray-400 line-through mb-1">6 320 zł</p>
-          <p className="text-6xl font-extrabold text-gray-900 mb-8">997 zł</p>
+          <p className="text-xl sm:text-2xl text-gray-400 line-through mb-1">6 320 zł</p>
+          <p className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-8">997 zł</p>
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=Sprint%2030%20Dni%20%E2%80%94%20Zam%C3%B3wienie&body=Cze%C5%9B%C4%87%2C%20chc%C4%99%20zam%C3%B3wi%C4%87%20Sprint%2030%20Dni%20za%20997%20z%C5%82.`}
-            className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-gray-900 px-10 py-5 text-lg font-bold text-white no-underline transition-all hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg"
+            className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-gray-900 px-6 sm:px-10 py-4 sm:py-5 text-sm sm:text-lg font-bold text-white no-underline transition-all hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg break-all"
           >
-            Napisz do nas: {CONTACT_EMAIL}
+            Napisz: {CONTACT_EMAIL}
           </a>
           <p className="mt-8 text-sm text-gray-500">
             Po opłacie natychmiast dostajesz dostęp na maila. Gwarancja Bezterminowa Bez
