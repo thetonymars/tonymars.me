@@ -41,10 +41,6 @@ function P({ children }: { children: React.ReactNode }) {
   return <p className="text-lg leading-relaxed text-gray-700">{children}</p>
 }
 
-function Divider() {
-  return <hr className="my-20 border-t border-gray-200" />
-}
-
 function Bonus({
   number,
   title,
@@ -165,10 +161,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* PAIN */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-8">
           <H2>Skończ z planowaniem &bdquo;od poniedziałku na poważnie&rdquo;</H2>
 
@@ -270,10 +264,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* VEHICLE / HOW */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-8">
           <H2>Wreszcie pętla wstydu i poczucia winy nie hamuje już twojego życia</H2>
 
@@ -327,10 +319,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* DELIVERABLES */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Co konkretnie dostajesz w Sprincie?</H2>
           <H3>Protokół 30 Dni: Start, Mid-Lock, Finisz</H3>
@@ -364,10 +354,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* PRICE PREP */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Ile kosztuje Sprint 30 Dni?</H2>
           <P>Ile zapłaciłeś już, próbując domknąć cokolwiek samodzielnie?</P>
@@ -404,10 +392,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* WORTH IT? */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Czy Sprint 30 Dni jest dla ciebie?</H2>
           <P>Zadaj sobie 3 pytania...</P>
@@ -440,10 +426,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* STRATEGIC REASON + PRICE */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Ale dziś nie wezmę od ciebie 6 320 zł</H2>
           <P>Zrobię mądrzej... Dam ci cały Sprint 6 razy taniej.</P>
@@ -480,10 +464,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* BONUSES */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-16">
           <div>
             <H2>Jednak to nie wszystko...</H2>
@@ -693,10 +675,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* VALUE STACK */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Podsumujmy</H2>
           <ul className="text-base sm:text-lg text-gray-700">
@@ -726,10 +706,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* GUARANTEE */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Gwarancja Bezterminowa Bez Pytań</H2>
           <P>Biorę całe ryzyko na siebie.</P>
@@ -771,10 +749,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* URGENCY */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H2>Uwaga: ograniczona oferta</H2>
           <P>Zostało tylko 50 founding member miejsc.</P>
@@ -800,10 +776,8 @@ export default function SkonczLanding() {
         </div>
       </section>
 
-      <Divider />
-
       {/* P.S. */}
-      <section className="py-4">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 space-y-6">
           <H3>P.S.</H3>
           <P>Po opłacie 997 zł dostajesz:</P>
@@ -838,7 +812,7 @@ export default function SkonczLanding() {
       </section>
 
       {/* ORDER */}
-      <section id="zamow" className="py-20 sm:py-28 bg-gray-50 mt-20">
+      <section id="zamow" className="py-20 sm:py-28 bg-gray-50">
         <div className="mx-auto max-w-2xl px-5 sm:px-6 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">
             Zamów Sprint 30 Dni
