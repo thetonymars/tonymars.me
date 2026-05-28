@@ -14,3 +14,6 @@ Thumbs.db
 
 # logs
 *.log
+
+# local AI context (kept local, not in the public repo)
+CLAUDE.md
