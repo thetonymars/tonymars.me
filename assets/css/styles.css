@@ -53,3 +53,17 @@ p { color: var(--muted); font-size: 1.0625rem; }
 }
 .site-footer a { color: var(--muted); text-decoration: none; margin: 0 0.5rem; }
 .site-footer a:hover { color: var(--accent); }
+
+/* shared header (injected by layout.js) */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1rem 24px;
+  border-bottom: 1px solid var(--line);
+}
+.site-logo { font-weight: 800; letter-spacing: 1px; font-size: 0.9375rem; color: var(--navy); text-decoration: none; }
+.site-nav a { color: var(--muted); text-decoration: none; font-size: 0.8125rem; font-weight: 500; margin-left: 1.5rem; }
+.site-nav a:hover { color: var(--accent); }
