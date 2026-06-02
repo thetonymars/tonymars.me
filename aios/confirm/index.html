@@ -15,16 +15,23 @@
 <body>
   <p>Подтверждаем почту…</p>
   <script>
-    // Static bridge replacing the old /aios/confirm server route:
-    // confirm the token on the engine (best-effort), then go to the thank-you page.
+    // Static bridge: confirm the token on the engine, then go to the thank-you page.
+    // We must WAIT for confirm to succeed before redirecting — confirm mints the
+    // license, and the thank-you page asks for the install prompt right after.
     const CONFIRM = "https://aios-skills.vercel.app/confirm";
     const t = new URLSearchParams(location.search).get("t") || "";
     const dest = "/aios/thank-you" + (t ? "?t=" + encodeURIComponent(t) : "");
+    const msg = document.querySelector("p");
+    async function confirmOnce() {
+      try { const r = await fetch(`${CONFIRM}?t=${encodeURIComponent(t)}`); return r.ok; }
+      catch (e) { return false; }
+    }
     async function run() {
-      if (t) {
-        try { await fetch(`${CONFIRM}?t=${encodeURIComponent(t)}`); } catch (e) {}
-      }
-      location.replace(dest);
+      if (!t) { location.replace("/aios"); return; }
+      // confirm mints the license — wait for success before going to the prompt page.
+      // one retry to ride out a transient hiccup on this conversion-critical step.
+      if (await confirmOnce() || await confirmOnce()) { location.replace(dest); return; }
+      msg.textContent = "Не удалось подтвердить. Обнови страницу или запроси ссылку заново.";
     }
     run();
   </script>
