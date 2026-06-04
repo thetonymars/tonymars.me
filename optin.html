@@ -175,7 +175,9 @@
       errBox.classList.remove('show');
     }
 
-    form.addEventListener('submit', async function (e) {
+    const AXL_BOT = 'https://secure.yellows.one/b/104257/100475';
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       clearError();
 
@@ -189,28 +191,8 @@
       btn.disabled = true;
       btnText.textContent = 'Зачекай...';
 
-      try {
-        const res = await fetch('/api/optin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || 'Помилка сервера');
-        }
-
-        // Redirect to Telegram via AXL bot link with Contact.ID
-        window.location.href = data.redirect;
-
-      } catch (err) {
-        btn.disabled = false;
-        btnText.textContent = 'Отримати безкоштовно →';
-        showError('Щось пішло не так. Спробуй ще раз.');
-        console.error(err);
-      }
+      // Pass email directly in the URL — AXL should find/create the contact by email
+      window.location.href = AXL_BOT + '?email=' + encodeURIComponent(email);
     });
   </script>
 </body>
