@@ -191,8 +191,8 @@
       btn.disabled = true;
       btnText.textContent = 'Зачекай...';
 
-      // Pass email directly in the URL — AXL should find/create the contact by email
-      window.location.href = AXL_BOT + '?email=' + encodeURIComponent(email);
+      // Pass email via customer_email — Prodamus/AXL standard parameter name
+      window.location.href = AXL_BOT + '?customer_email=' + encodeURIComponent(email);
     });
   </script>
 </body>
