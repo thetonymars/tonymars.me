@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tony Mars — Отримати безкоштовно</title>
+  <meta name="description" content="Введи email — отримай доступ одразу в Telegram.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/layout.js" defer></script>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .optin-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .optin-card {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    .optin-label {
+      display: inline-block;
+      background: #eaf4fb;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .optin-card h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+
+    .optin-card p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0 0 32px;
+      line-height: 1.65;
+    }
+
+    .optin-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .optin-input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-family: var(--font);
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color 0.15s;
+    }
+    .optin-input:focus { border-color: var(--accent); }
+    .optin-input::placeholder { color: #b0bbbf; }
+
+    .optin-btn {
+      width: 100%;
+      padding: 15px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: var(--font);
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .optin-btn:hover:not(:disabled) { background: #005fa0; }
+    .optin-btn:active:not(:disabled) { transform: scale(0.98); }
+    .optin-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .optin-privacy {
+      font-size: 0.78rem;
+      color: #9aaab0;
+      margin: 12px 0 0;
+    }
+    .optin-privacy a { color: #9aaab0; }
+
+    .optin-error {
+      display: none;
+      background: #fff0f0;
+      border: 1px solid #f5c0c0;
+      color: #c0392b;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+    .optin-error.show { display: block; }
+
+    @media (max-width: 480px) {
+      .optin-card h1 { font-size: 1.625rem; }
+    }
+  </style>
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <div class="optin-wrap">
+    <div class="optin-card">
+      <span class="optin-label">Безкоштовно</span>
+      <h1>Отримай [НАЗВА МАГНІТУ]</h1>
+      <p>Введи свій email — і одразу отримаєш доступ у Telegram. Без затримок, без зайвих кроків.</p>
+
+      <form class="optin-form" id="optinForm" novalidate>
+        <input
+          class="optin-input"
+          id="emailInput"
+          type="email"
+          name="email"
+          placeholder="твій@email.com"
+          autocomplete="email"
+          required
+        >
+        <div class="optin-error" id="optinError"></div>
+        <button class="optin-btn" type="submit" id="optinBtn">
+          <span id="btnText">Отримати безкоштовно →</span>
+        </button>
+      </form>
+
+      <p class="optin-privacy">
+        Натискаючи кнопку, ти погоджуєшся з
+        <a href="/privacy">Політикою конфіденційності</a>.
+        Без спаму.
+      </p>
+    </div>
+  </div>
+
+  <div data-include="footer"></div>
+
+  <script>
+    const form    = document.getElementById('optinForm');
+    const input   = document.getElementById('emailInput');
+    const btn     = document.getElementById('optinBtn');
+    const btnText = document.getElementById('btnText');
+    const errBox  = document.getElementById('optinError');
+
+    function showError(msg) {
+      errBox.textContent = msg;
+      errBox.classList.add('show');
+    }
+    function clearError() {
+      errBox.classList.remove('show');
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearError();
+
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Введи правильний email адрес.');
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.textContent = 'Зачекай...';
+
+      try {
+        const res = await fetch('/api/optin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Помилка сервера');
+        }
+
+        // Redirect to Telegram via AXL bot link with Contact.ID
+        window.location.href = data.redirect;
+
+      } catch (err) {
+        btn.disabled = false;
+        btnText.textContent = 'Отримати безкоштовно →';
+        showError('Щось пішло не так. Спробуй ще раз.');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
