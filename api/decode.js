@@ -2,7 +2,7 @@
 // Telegram ref URL (start=REF--<payload>) back into a clean email address.
 //
 // ManyChat External Request (GET):
-//   https://www.tonymars.me/api/decode?p={{tg_ref_payload}}
+//   https://www.tonymars.me/api/decode?p={{email_encoded}}
 // Response: { "email": "user@example.com" }  — map $.email to the System Email field.
 
 module.exports = function handler(req, res) {
