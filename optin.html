@@ -175,7 +175,15 @@
       errBox.classList.remove('show');
     }
 
-    const AXL_BOT = 'https://secure.yellows.one/b/104257/100475';
+    const TG_BOT = 'https://t.me/pasav_bot';
+    const TG_REF = 'w55661584';
+
+    // Telegram start= allows only A-Z a-z 0-9 _ - and max 64 chars,
+    // so the email is base64url-encoded here and decoded back via /api/decode.
+    function b64url(s) {
+      return btoa(unescape(encodeURIComponent(s)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -188,11 +196,16 @@
         return;
       }
 
-      btn.disabled = true;
-      btnText.textContent = 'Зачекай...';
+      const payload = b64url(email);
+      if (TG_REF.length + 2 + payload.length > 64) {
+        showError('Цей email задовгий — напиши нам напряму.');
+        return;
+      }
 
-      // Pass email via customer_email — Prodamus/AXL standard parameter name
-      window.location.href = AXL_BOT + '?customer_email=' + encodeURIComponent(email);
+      btn.disabled = true;
+      btnText.textContent = 'Відкриваю Telegram...';
+
+      window.location.href = TG_BOT + '?start=' + TG_REF + '--' + payload;
     });
   </script>
 </body>
